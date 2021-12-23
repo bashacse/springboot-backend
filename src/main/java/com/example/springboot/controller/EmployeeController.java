@@ -1,5 +1,7 @@
 package com.example.springboot.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,8 @@ import java.util.Map;
 @RequestMapping("/api")
 public class EmployeeController {
 
+	Logger logger = LoggerFactory.getLogger(EmployeeRepository.class);
+	
     @Autowired
     private EmployeeRepository employeeRepository;
 
@@ -28,13 +32,14 @@ public class EmployeeController {
 
     @GetMapping("/employees")
     public ResponseEntity<List<Employee>> getAllEmployees() {
-
+    	logger.info("in  getAllEmployees method");
         return ResponseEntity.ok(employeeRepository.findAll());
     }
 
     @GetMapping("/employees/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable(value = "id") Integer employeeId)
             throws ResourceNotFoundException {
+    	logger.info("in  getEmployeeById method");
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
         return ResponseEntity.ok().body(employee);
@@ -43,6 +48,7 @@ public class EmployeeController {
     @PutMapping("/employees/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable(value = "id") Integer employeeId,
                                                    @RequestBody Employee employeeDetails) throws ResourceNotFoundException {
+    	logger.info("in  updateEmployee method");
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
 
@@ -58,6 +64,7 @@ public class EmployeeController {
     @DeleteMapping("/employees/{id}")
     public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Integer employeeId)
             throws ResourceNotFoundException {
+    	logger.info("in  deleteEmployee method");
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
 
