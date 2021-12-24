@@ -7,14 +7,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class SpringbootAngularApplication extends SpringBootServletInitializer
 {
-	
-//	protected SpringApplicationBuilder configure()
-//	{
-//		return application.sources(SpringbootAngularApplication.class);
-//	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootAngularApplication.class, args);
 	}
-
 }
