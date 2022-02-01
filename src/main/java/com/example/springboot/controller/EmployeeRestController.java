@@ -95,7 +95,7 @@ public class EmployeeRestController {
 			logger.info("Employee found : {}",tempEmployee);
 			employeeService.deleteById(employeeId);
 			logger.info("Employee deleted : {}",tempEmployee);
-			return "Employee deleted and the employee  id - " + employeeId;
+			return "Employee deleted with  id - " + employeeId;
 		}else{
 			try {
 				throw new Exception();
